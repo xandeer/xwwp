@@ -38,6 +38,7 @@
 (require 'eieio)
 (require 'cl-lib)
 (require 'ido)
+(require 'map)
 
 (defgroup xwwp-follow-link nil
   "`xwidget-webkit' follow link customizations."
@@ -161,12 +162,11 @@ ACTION should be called with the resulting link.
 UPDATE-FN is a function that can be called when the candidates
 list is narrowed.It will highlight the link list in the
 browser."
-  (funcall action (cdr (assoc (completing-read prompt (lambda (str pred _)
-                                                        (oset backend text str)
-                                                        (funcall update-fn)
-                                                        (try-completion str collection pred))
-                                               nil t)
-                              collection))))
+  (funcall action (map-elt collection (completing-read prompt (lambda (str pred _)
+                                                       (oset backend text str)
+                                                       (funcall update-fn)
+                                                       (try-completion str collection pred))
+                                              nil t) nil #'equal)))
 
 (declare-function xwwp-follow-link-completion-backend-ido "xwwp-follow-link-ido")
 (declare-function xwwp-follow-link-completion-backend-ivy "xwwp-follow-link-ivy")

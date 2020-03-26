@@ -41,6 +41,7 @@
 
 
 (require 'json)
+(require 'map)
 (require 'subr-x)
 (require 'xwidget)
 
@@ -95,17 +96,9 @@ null;
 
 (defun xwwp-js-register-function (ns-name name js-script)
   "Register javascript function NAME in namespace NS-NAME with body JS-SCRIPT."
-  (let* ((namespace (assoc ns-name xwwp-js-scripts))
-         (fun (when namespace (assoc name (cdr namespace)))))
-    (cond (fun
-           (delete fun namespace)
-           (xwwp-js-register-function ns-name name js-script))
-          ((not namespace)
-           (push (cons ns-name '()) xwwp-js-scripts)
-           (xwwp-js-register-function ns-name name js-script))
-          (t
-           (push (cons name js-script) (cdr namespace))))
-    (cons ns-name name)))
+  (let ((namespace (map-delete (map-elt xwwp-js-scripts ns-name) name))
+        (scripts (map-delete xwwp-js-scripts ns-name)))
+    (setq xwwp-js-scripts (map-insert scripts ns-name (map-insert namespace name js-script)))))
 
 (defun xwwp-js-funcall (xwidget namespace name &rest arguments)
   "Invoke javascript function NAME in XWIDGET instance passing ARGUMENTS witch CALLBACK in NAMESPACE."
@@ -139,8 +132,8 @@ and a Lisp function to call it."
 
 (defun xwwp-js-inject (xwidget ns-name)
   "Inject the functions defined in NS-NAME into XWIDGET session."
-  (let* ((namespace (assoc ns-name xwwp-js-scripts))
-         (script (mapconcat #'cdr (cdr namespace) "\n")))
+  (let* ((namespace (map-elt xwwp-js-scripts ns-name))
+         (script (mapconcat #'cdr namespace "\n")))
     (xwwp-html-inject-script xwidget (format "--xwwp-%s" (symbol-name ns-name)) script)))
 
 ;; Local Variables:
