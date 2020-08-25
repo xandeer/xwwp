@@ -37,7 +37,7 @@
                                   ("background-color" . "yellow")
                                   ("font-family" . "monospace")
                                   ("font-size" . "2em"))
-  "Style to apply to xwwp-ace labels."
+  "CSS style to apply to xwwp-ace labels."
   :type '(list (cons string string))
   :group 'xwwp-ace)
 

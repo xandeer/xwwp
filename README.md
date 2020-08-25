@@ -5,6 +5,8 @@ functionnalities.
 
 ![CI](https://github.com/canatella/xwwp/workflows/CI/badge.svg?branch=master)
 
+Notice: development is moved to master branch!
+
 ## Keyboard navigation
 
 Use `xwwp-ace-toggle` to trigger an `ace-jump` style selection of currently
@@ -55,7 +57,7 @@ front using `swith-to-buffer-other-window`.
 
 ### How to install
 
-Clone the repo locally, checkout `xwwp-ace-dev` branch and
+Clone the repo locally and
 ```
 (use-package xwwp-full
   :load-path "~/.emacs.d/xwwp"
