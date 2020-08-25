@@ -174,13 +174,15 @@
     (let (result)
       (ivy-read prompt xwwp-history-completion-list
                 :initial-input default
-                :action (lambda (v) (setq result (cdr v))))
+                :action (lambda (v)
+                          (setq result (if (consp v) (cdr v) v))))
       result))
    ((eq xwwp-follow-link-completion-system 'ido)
-    (let ((result (ido-completing-read prompt xwwp-history-completion-list nil nil default)))
-      (substring result
-                 (next-property-change 0 result)
-                 (1- (length result)))))))
+    (let* ((result (ido-completing-read prompt xwwp-history-completion-list nil nil default))
+           (url-start (next-property-change 0 result)))
+      (if url-start
+          (substring result url-start (1- (length result)))
+        result)))))
 (defvar xwwp-history-key-map (make-sparse-keymap))
 (define-key xwwp-history-key-map (kbd "RET")
   (lambda ()
