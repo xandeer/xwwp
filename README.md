@@ -68,8 +68,17 @@ Clone the repo locally and
               ("t" . xwwp-ace-toggle)))
 ```
 
+Or via Melpa `M-x package-install xwwp`,
+and setup for your completion backend via variable `xwwp-follow-link-completion-system`
+
 ## Development
 
 The goal of this package is to enhance the `xwidget-webkit` browser. If you have
 any code or feature suggestion that you think should make it into this package,
 please open an issue or better, create a pull request!
+
+## Authors
+
+- Damien Merenne <dam@cosinux.org>
+- Q. Hong <qhong@mit.edu>
+- Masahiro Nakamura <tsuucat@icloud.com>
