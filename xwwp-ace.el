@@ -32,11 +32,13 @@
   :group 'xwwp)
 
 (defcustom xwwp-ace-label-style '(("z-index" . "2147483647")
-                                  ("color" . "red")
-                                  ("opacity" . "0.5")
-                                  ("background-color" . "yellow")
+                                  ("opacity" . "0.8")
+                                  ("background-color" . "#363739")
+                                  ("color" . "white")
                                   ("font-family" . "monospace")
-                                  ("font-size" . "2em"))
+                                  ("font-size" . "2em")
+                                  ("border-radius" . "4px")
+                                  ("padding" . "0.1em"))
   "CSS style to apply to xwwp-ace labels."
   :type '(list (cons string string))
   :group 'xwwp-ace)
