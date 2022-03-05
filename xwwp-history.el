@@ -65,7 +65,7 @@
          (existed (gethash url xwwp-history-table)))
     (when existed
       (setq item existed)
-      (incf (xwwp-history-item-visit-count existed)))
+      (cl-incf (xwwp-history-item-visit-count existed)))
     (puthash url item xwwp-history-table)
     (when existed
       (setq xwwp-history-visualization-list
