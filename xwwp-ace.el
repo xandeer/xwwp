@@ -37,8 +37,9 @@
                                   ("color" . "white")
                                   ("font-family" . "monospace")
                                   ("font-size" . "2em")
-                                  ("border-radius" . "4px")
-                                  ("padding" . "0.1em"))
+                                  ("border-radius" . "0.2em")
+                                  ("border" . "solid white 0.1em")
+                                  ("padding" . "0.1em 0.6em"))
   "CSS style to apply to xwwp-ace labels."
   :type '(list (cons string string))
   :group 'xwwp-ace)
