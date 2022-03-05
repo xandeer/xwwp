@@ -133,9 +133,9 @@ else if (updated_candidates.length == 1){
   let event = new MouseEvent('click', {
     bubbles: true,
     cancelable: true,
-    clientX: rect.x + 1,
-    clientY: rect.y + 1
-  }
+    clientX: rect.left + 1,
+    clientY: rect.top + 1
+  });
   selected.dispatchEvent(event);
   return 1;
 }
