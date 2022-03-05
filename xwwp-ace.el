@@ -129,8 +129,14 @@ if(updated_candidates.length > 1){
 else if (updated_candidates.length == 1){
   let selected = updated_candidates[0][1];
   __xwidget_plus_ace_cleanup();
-  selected.focus();
-  selected.click();
+  let rect = selected.getBoundingClientRect();
+  let event = new MouseEvent('click', {
+    bubbles: true,
+    cancelable: true,
+    clientX: rect.x + 1,
+    clientY: rect.y + 1
+  }
+  selected.dispatchEvent(event);
   return 1;
 }
 else {
