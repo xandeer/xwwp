@@ -133,12 +133,11 @@ else if (updated_candidates.length == 1){
   let selected = updated_candidates[0][1];
   __xwidget_plus_ace_cleanup();
   let rect = selected.getBoundingClientRect();
-  let offset = 6;
   let event = new MouseEvent('click', {
     bubbles: true,
     cancelable: true,
-    clientX: rect.left + offset,
-    clientY: rect.top + offset
+    clientX: rect.left + rect.width / 2,
+    clientY: rect.top + rect.height / 2
   });
   selected.dispatchEvent(event);
   return 1;
